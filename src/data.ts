@@ -1,4 +1,18 @@
- const posts = [
+export interface POST{
+  id:number;
+  title:string;
+  content:string;
+  createdAt:Date;
+}
+
+export interface COMMENT{
+  id:number;
+  postId:number;
+  content:string;
+  createdAt:Date;
+}
+
+export const posts: POST[] = [
   {
     id: 1,
     title: "Getting started with backend development",
@@ -19,7 +33,7 @@
   }
 ];
 
- const comments = [
+export const comments: COMMENT[] = [
   {
     id: 1,
     postId: 1,
