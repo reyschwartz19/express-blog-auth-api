@@ -2,6 +2,11 @@ import express, {Request,Response} from 'express';
 const app = express();
 import {postRouter} from './routes/posts'
 import { commentRouter } from './routes/comments';
+import connectDB from './config/db';
+import dotenv from 'dotenv';
+dotenv.config();
+
+connectDB();
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
