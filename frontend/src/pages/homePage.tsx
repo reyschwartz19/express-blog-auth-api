@@ -1,7 +1,18 @@
 import { Plus } from "lucide-react"
 import Posts from "../components/posts"
+import { useState, useEffect } from "react"
+import { getPosts } from "../api/post.api"
+import type { Post } from "../types/post"
 
 const HomePage = () =>{
+
+   const [posts, setPosts] =  useState<Post[]>([]);
+
+   useEffect(() =>{
+    getPosts().then(setPosts).catch(err => console.error('Failed to fetch posts:', err));
+   },[])
+
+
     return(
         <main className="min-h-screen bg-secondary overflow-x-hidden font-primary">
           <header 
@@ -14,18 +25,11 @@ const HomePage = () =>{
             <Plus className="ml-auto border rounded-full text-primary w-8 h-8 p-1"/>
           </header>
           <section className="mt-15.5">
-            <Posts 
-            title="My first Post"
-            content="This is the content of the Post"
-            date={new Date()}
-            commentCount={3}
-            />
-            <Posts 
-            title="My first Post"
-            content="This is the content of the Post"
-            date={new Date()}
-            commentCount={3}
-            />
+            <div className="cursor-pointer">
+              {posts.map(post =>(
+                <Posts key={post.id} post={post}/>
+              ))}
+            </div>
           </section>
         </main>
     )

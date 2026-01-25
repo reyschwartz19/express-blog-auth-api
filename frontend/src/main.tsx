@@ -1,12 +1,29 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ReactDOM from 'react-dom/client'
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
 import './index.css'
 import HomePage from './pages/homePage.tsx'
 import CreatePost from './pages/createPost.tsx'
 import CommentPage from './pages/commentPage.tsx'
 
-createRoot(document.getElementById('root')!).render(
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomePage />
+  },
+  {
+    path: '/create-post',
+    element: <CreatePost />
+  },
+  {
+    path: '/comments/:postId',
+    element: <CommentPage />
+  }
+])
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <CommentPage />
+    <RouterProvider router={router} />
   </StrictMode>,
 )
+
