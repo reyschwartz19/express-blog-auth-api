@@ -40,7 +40,7 @@ export const getCommentByCommentId = async (req: Request<PostParams>, res: Respo
 
 export const addCommentToPost = async (req: Request<PostParams>, res: Response) => {
      try{
-        const comment  =await commentServices.addCommentToPost(req.params.postId, req.params.commentId);
+        const comment  =await commentServices.addCommentToPost(req.params.postId, req.body.content);
         res.status(201).json({success: true, data: comment})
     }catch(error: unknown){
          if (error instanceof Error){

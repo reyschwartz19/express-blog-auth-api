@@ -13,7 +13,7 @@ export const createPost = (data: {
     title:string;
     content: string;
 }) => {
-    return http<Post>("/post",{
+    return http<Post>("/posts",{
         method: "POST",
         body: JSON.stringify(data),
     })
@@ -23,7 +23,7 @@ export const updatePost = (data: {
     title:string;
     content: string;
 }) => {
-    return http<Post>("/post",{
+    return http<Post>("/posts",{
         method: "PUT",
         body: JSON.stringify(data),
     })

@@ -12,3 +12,7 @@ export const findCommentById = async (postId: string, commentId: string)=>{
 export const deleteComment = async (commentId: string, postId: string) =>{
     return CommentModel.findOneAndDelete({_id: commentId, postId});
 }
+
+export const countCommentsForPost = async (postId: string) =>{
+    return CommentModel.countDocuments({postId});
+}
